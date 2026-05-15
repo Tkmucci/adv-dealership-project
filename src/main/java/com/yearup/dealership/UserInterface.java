@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     private Dealership dealership;
+    private Contract contract;
     private final Scanner userInput;
 
     public UserInterface() {
@@ -14,6 +15,8 @@ public class UserInterface {
 
     private void init() {
         DealershipFileManager fileManager = new DealershipFileManager();
+        ContractDataManager contractDataManager = new ContractDataManager();
+        //this.contract = contractDataManager.getContracts();
         this.dealership = fileManager.getDealership();
     }
 
