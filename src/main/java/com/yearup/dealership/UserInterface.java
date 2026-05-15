@@ -1,5 +1,6 @@
 package com.yearup.dealership;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class UserInterface {
     private void init() {
         DealershipFileManager fileManager = new DealershipFileManager();
         ContractDataManager contractDataManager = new ContractDataManager();
-        //this.contract = contractDataManager.getContracts();
+
         this.dealership = fileManager.getDealership();
     }
 
@@ -101,7 +102,7 @@ public class UserInterface {
 
             System.out.println("Press ENTER to continue back to Main Menu...");
             userInput.nextLine();
-        }while (true);
+        } while (true);
 
     }
 
@@ -281,7 +282,89 @@ public class UserInterface {
 
     public void processContracts() {
 
-        System.out.println("\n--- Contracts ---");
-        System.out.println("Contracts features coming soon!");
+        System.out.println("\n--- Sell/Lease a Vehicle ---");
+
+        //get VIN
+        System.out.print("Enter VIN of vehicle: ");
+        int vin = userInput.nextInt();
+        userInput.nextLine();
+
+        //find vehicle
+        Vehicle vehicleToSell = null;
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if (vehicle.getVin() == vin) {
+                vehicleToSell = vehicle;
+                break;
+            }
+        }
+
+        if (vehicleToSell == null) {
+            System.out.println("Vehicle not found!");
+            return;
+        }
+
+        //get customer info
+        System.out.print("Enter customer name: ");
+        String customerName = userInput.nextLine();
+
+        System.out.print("Enter customer email: ");
+        String customerEmail = userInput.nextLine();
+
+        //get today's date
+        String date = LocalDate.now().toString();
+
+        //sale or Lease?
+        System.out.print("Is this a (S)ale or (L)ease? ");
+        String type = userInput.nextLine().toUpperCase();
+
+        Contract contract = null;
+
+        if (type.equals("S")) {
+
+            //for sale
+            System.out.print("Do you want to finance? (Y/N): ");
+            String financeChoice = userInput.nextLine().toUpperCase();
+            boolean isFinanced = financeChoice.equals("Y");
+
+            contract = new SalesContract(date, customerName, customerEmail,
+                    vehicleToSell, isFinanced);
+
+        } else if (type.equals("L")) {
+
+            //for lease
+            int currentYear = LocalDate.now().getYear();
+
+            //check if vehicle is over 3 years old
+            if (currentYear - vehicleToSell.getYear() > 3) {
+
+                System.out.println("Cannot lease vehicles over 3 years old!");
+                return;
+            }
+
+            contract = new LeaseContract(date, customerName, customerEmail, vehicleToSell);
+        }
+
+        if (contract != null) {
+
+            // Save contract
+            ContractDataManager contractManager = new ContractDataManager();
+            contractManager.saveContract(contract);
+
+            // Remove vehicle from inventory
+            dealership.removeVehicle(vehicleToSell);
+
+            // Save updated inventory
+            DealershipFileManager fileManager = new DealershipFileManager();
+            fileManager.saveDealership(dealership);
+
+            // Display summary
+            System.out.println("\n=== Contract Summary ===");
+            System.out.printf("Customer: %s (%s)%n", customerName, customerEmail);
+            System.out.printf("Vehicle: %d %s %s%n",
+                    vehicleToSell.getYear(), vehicleToSell.getMake(), vehicleToSell.getModel());
+            System.out.printf("Total Price: $%.2f%n", contract.getTotalPrice());
+            System.out.printf("Monthly Payment: $%.2f%n", contract.getMonthlyPayment());
+            System.out.println("========================\n");
+        }
     }
 }
