@@ -10,8 +10,6 @@ public class Dealership {
     private String address;
     private String phone;
     private ArrayList<Vehicle> inventory;
-    private ArrayList<LeaseContract> leaseContracts;
-    private ArrayList<SalesContract> salesContracts;
 
     //my constructor
     public Dealership(String name, String address, String phone) {
@@ -19,8 +17,6 @@ public class Dealership {
         this.address = address;
         this.phone = phone;
         this.inventory = new ArrayList<>();
-        this.leaseContracts = new ArrayList<>();
-        this.salesContracts = new ArrayList<>();
     }
 
     //my getters and setters
@@ -51,21 +47,10 @@ public class Dealership {
     public ArrayList<Vehicle> getInventory() {
         return inventory;
     }
-    public ArrayList<LeaseContract> getContracts() {
-
-        return leaseContracts;
-    }
-    public List<LeaseContract> getAllContracts() {
-        return leaseContracts;
-    }
 
     public List<Vehicle> getAllVehicles() {
         return inventory;
     }
-    public void addContract(LeaseContract leaseContract) {
-        leaseContracts.add(leaseContracts);
-    }
-
     public void addVehicle(Vehicle vehicle) {
         inventory.add(vehicle);
     }
