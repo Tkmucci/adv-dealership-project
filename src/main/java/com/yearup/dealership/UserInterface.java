@@ -38,6 +38,7 @@ public class UserInterface {
             System.out.println("7 - List ALL vehicles");
             System.out.println("8 - Add a vehicle");
             System.out.println("9 - Remove a vehicle");
+            System.out.println("10 - View Contracts");
             System.out.println("99 - Quit");
             System.out.print("\nEnter your choice: ");
 
@@ -73,6 +74,9 @@ public class UserInterface {
                     break;
                 case "9":
                     processRemoveVehicleRequest();
+                    break;
+                case "10":
+                    processContracts();
                     break;
                 case "b", "B":
                     break;
@@ -270,5 +274,11 @@ public class UserInterface {
         } else {
             System.out.println("\nVehicle with VIN " + vin + " not found.");
         }
+    }
+
+    public void processContracts() {
+
+        System.out.println("\n--- Contracts ---");
+        System.out.println("Contracts features coming soon!");
     }
 }
