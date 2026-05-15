@@ -2,8 +2,8 @@ package com.yearup.dealership;
 
 public class LeaseContract extends Contract{
 
-    protected double expectedEndingValue = 0.5;
-    protected  double leaseFee = 0.07;
+    protected double expectedEndingValue;
+    protected  double leaseFee;
 
     public LeaseContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold){
 
