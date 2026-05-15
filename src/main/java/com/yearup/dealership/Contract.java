@@ -1,5 +1,8 @@
 package com.yearup.dealership;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Contract {
 
     protected String dateOfContract;
@@ -8,6 +11,7 @@ public abstract class Contract {
     Vehicle vehicleSold;
     protected double totalPrice;
     protected double monthlyPayment;
+    private ArrayList<Vehicle> contracts;
 
     public Contract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicle){
 
@@ -15,11 +19,19 @@ public abstract class Contract {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.vehicleSold = vehicle;
+        this.contracts = new ArrayList<>();
 
     }
 
     public abstract double getMonthlyPayment();
     public abstract double getTotalPrice();
+
+    public ArrayList<Vehicle> getContracts() {
+        return contracts;
+    }
+    public List<Vehicle> getAllContracts() {
+        return contracts;
+    }
     public String getDateOfContract() {
         return dateOfContract;
     }
