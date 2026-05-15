@@ -1,5 +1,5 @@
 package com.yearup.dealership;
 
-public class ContractFileManager {
+public class ContractDataManager {
 
 }
