@@ -1,10 +1,8 @@
 package com.yearup.dealership;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Contract {
 
+    //my protected variables
     protected String dateOfContract;
     protected String customerName;
     protected String customerEmail;
@@ -12,7 +10,7 @@ public abstract class Contract {
     protected double totalPrice;
     protected double monthlyPayment;
 
-
+    //my constructor
     public Contract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicle){
 
         this.dateOfContract = dateOfContract;
@@ -24,9 +22,11 @@ public abstract class Contract {
 
     }
 
+    //my abstract methods
     public abstract double getMonthlyPayment();
     public abstract double getTotalPrice();
 
+    //my getters and setters
     public String getDateOfContract() {
         return dateOfContract;
     }

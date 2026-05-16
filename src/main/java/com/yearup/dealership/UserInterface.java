@@ -6,17 +6,18 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    //my private variables
     private Dealership dealership;
-    private Contract contract;
     private final Scanner userInput;
 
+    //my constructor
     public UserInterface() {
         this.userInput = new Scanner(System.in);
     }
 
     private void init() {
+
         DealershipFileManager fileManager = new DealershipFileManager();
-        ContractDataManager contractDataManager = new ContractDataManager();
 
         this.dealership = fileManager.getDealership();
     }
@@ -161,6 +162,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    //my process get by year request.
     public void processGetByYearRequest() {
 
         System.out.print("\nEnter minimum year: ");
@@ -173,6 +175,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    //my process get by color request.
     public void processGetByColorRequest() {
 
         System.out.print("\nEnter color: ");
@@ -182,6 +185,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    //my process get by mileage request.
     public void processGetByMileageRequest() {
 
         System.out.print("\nEnter minimum mileage: ");
@@ -194,6 +198,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    //my process get by vehicle type request.
     public void processGetByVehicleTypeRequest() {
 
         System.out.print("\nEnter vehicle type (car, truck, SUV, van): ");
@@ -203,12 +208,14 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    //my process get all-vehicles request.
     public void processGetAllVehiclesRequest() {
 
         List<Vehicle> vehicles = dealership.getAllVehicles();
         displayVehicles(vehicles);
     }
 
+    //my process add vehicle request.
     public void processAddVehicleRequest() {
 
         System.out.println("\n--- Add New Vehicle ---");
@@ -249,6 +256,7 @@ public class UserInterface {
         System.out.println("\nVehicle added successfully!");
     }
 
+    //my process remove vehicle request.
     public void processRemoveVehicleRequest() {
 
         System.out.print("\nEnter VIN of vehicle to remove: ");
@@ -257,6 +265,7 @@ public class UserInterface {
 
         Vehicle vehicleToRemove = null;
 
+        // Find the vehicle by VIN
         for (Vehicle vehicle : dealership.getAllVehicles()) {
 
             if (vehicle.getVin() == vin) {
@@ -266,6 +275,7 @@ public class UserInterface {
             }
         }
 
+        // Remove the vehicle
         if (vehicleToRemove != null) {
 
             dealership.removeVehicle(vehicleToRemove);
@@ -280,6 +290,7 @@ public class UserInterface {
         }
     }
 
+    //my process contracts method.
     public void processContracts() {
 
         System.out.println("\n--- Sell/Lease a Vehicle ---");
@@ -292,7 +303,9 @@ public class UserInterface {
         //find vehicle
         Vehicle vehicleToSell = null;
         for (Vehicle vehicle : dealership.getAllVehicles()) {
+
             if (vehicle.getVin() == vin) {
+
                 vehicleToSell = vehicle;
                 break;
             }

@@ -4,7 +4,7 @@ import java.io.*;
 
 public class DealershipFileManager {
 
-    //my method to load the inventory from a file
+    //my method to load the contracts from a file
     public Dealership getDealership() {
 
         System.out.println("Inventory loading...");
@@ -110,6 +110,7 @@ public class DealershipFileManager {
 
     //my method to create a vehicle from a line of data
     private Vehicle createVehicle(String[] dataParts) {
+
         int vin = Integer.parseInt(dataParts[0]);
         int year = Integer.parseInt(dataParts[1]);
         String make = dataParts[2];

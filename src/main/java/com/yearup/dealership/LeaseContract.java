@@ -2,9 +2,11 @@ package com.yearup.dealership;
 
 public class LeaseContract extends Contract{
 
+    //my protected variables
     protected double expectedEndingValue;
     protected  double leaseFee;
 
+    //my constructor
     public LeaseContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold){
 
         super(dateOfContract, customerName, customerEmail, vehicleSold);
@@ -14,6 +16,7 @@ public class LeaseContract extends Contract{
 
     }
 
+    //my overridden methods
     @Override
     public double getTotalPrice() {
         return expectedEndingValue + leaseFee;
@@ -32,6 +35,7 @@ public class LeaseContract extends Contract{
         return ((principal * top) / bottom)  ;
     }
 
+    //my getters and setters
     public double getExpectedEndingValue() {
         return expectedEndingValue;
     }

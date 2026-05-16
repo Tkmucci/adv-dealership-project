@@ -2,11 +2,13 @@ package com.yearup.dealership;
 
 public class SalesContract extends Contract {
 
+    //my private variables
     private double salesTaxAmount;
     private double recordingFee;
     private double processingFee;
     private boolean isFinanced;
 
+    //my constructor
     public SalesContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold, boolean isFinanced) {
 
         super(dateOfContract, customerName, customerEmail, vehicleSold);
@@ -17,14 +19,17 @@ public class SalesContract extends Contract {
 
         // Processing fee based on vehicle price
         if (vehicleSold.getPrice() < 10000) {
+
             this.processingFee = 295.00;
         } else {
+
             this.processingFee = 495.00;
         }
 
         this.isFinanced = isFinanced;
     }
 
+    //my overridden methods
     @Override
     public double getTotalPrice(){
 
@@ -57,6 +62,7 @@ public class SalesContract extends Contract {
 
     }
 
+    //my getters and setters
     public double getSalesTaxAmount() {
         return salesTaxAmount;
     }
